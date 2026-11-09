@@ -103,6 +103,36 @@ npm start
 `CLIENT_URL` me apna asli domain daal dena (CORS ke liye), aur Atlas me us server ka IP allow
 kar dena.
 
+## Split deployment (client Vercel par, API Render par)
+
+Agar client aur server alag-alag jagah deploy kar rahe ho (jaise client Vercel par, API
+Render par), to dono origin alag ho jaate hain — isliye `client/src/api.js` ko batana padta
+hai API kahan hai:
+
+- **Vercel project settings → Environment Variables** me `VITE_API_URL` set karo, bina
+  trailing slash, bina `/api` ke:
+  ```
+  VITE_API_URL=https://nrec-practical.onrender.com
+  ```
+  **Zaroori:** Vite yeh value build ke time par JS bundle me seedha likh deta hai (inline
+  kar deta hai). Variable add/change karne ke baad sirf wahi kaafi nahi — Vercel par naya
+  **Redeploy** zaroor karo, warna purana build hi chalta rahega.
+- **Render project settings → Environment** me `CLIENT_URL` set karo apne Vercel domain par
+  (CORS ke liye):
+  ```
+  CLIENT_URL=https://nrec-practical.vercel.app
+  ```
+  Render ka apna domain yahan daalne ki zaroorat nahi — CORS sirf un browser origins ko
+  control karta hai jahan se request *aati* hai, aur request kabhi Render ke apne domain se
+  nahi aati. (Vercel ka production domain aur preview-deployment pattern already code me
+  hardcoded hain, isliye `CLIENT_URL` sirf extra/custom domain ke liye hai.)
+- `client/vercel.json` me SPA rewrite hai taaki `/login` ya `/admin` par browser refresh
+  karne par 404 na aaye.
+- Local dev me `VITE_API_URL` khali rakho (ya set hi na karo) — Vite ka dev proxy
+  (`client/vite.config.js`) `/api` ko `http://localhost:5000` par bhej deta hai.
+
+Local dev ya single-service deploy (upar wala) me `VITE_API_URL` ki zaroorat nahi hai.
+
 ## Design ke baare me
 
 Dono pages asli A4 size par bane hain — 794 × 1123 px (96 dpi). Har text ki position original

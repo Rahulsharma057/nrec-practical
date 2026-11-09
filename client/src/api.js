@@ -1,5 +1,9 @@
 const TOKEN_KEY = "nrec-token";
 
+// VITE_API_URL khali ho to "/api" hi rehta hai (same-origin, single-service deploy).
+// Set ho to us origin + "/api" use hota hai (split deploy — client Vercel par, API Render par).
+const BASE = (import.meta.env.VITE_API_URL || "").replace(/\/+$/, "") + "/api";
+
 export function getToken() {
   try {
     return localStorage.getItem(TOKEN_KEY) || "";
@@ -18,24 +22,28 @@ export function setToken(token) {
 }
 
 async function request(path, options = {}) {
-  const headers = { ...(options.headers || {}) };
+  const headers = { Accept: "application/json", ...(options.headers || {}) };
   if (options.body && !(options.body instanceof FormData)) {
     headers["Content-Type"] = "application/json";
   }
   const token = getToken();
   if (token) headers.Authorization = "Bearer " + token;
 
-  const res = await fetch("/api" + path, { ...options, headers });
+  const url = BASE + path;
+  const res = await fetch(url, { ...options, headers });
   const text = await res.text();
   let data = null;
   if (text) {
     try {
       data = JSON.parse(text);
     } catch {
-      throw new Error("Server se sahi jawab nahi mila — shayad server band hai ya URL galat hai.");
+      throw new Error(
+        "Server se JSON nahi aaya (status " + res.status + ", url " + url + "). " +
+          "VITE_API_URL check karo — shayad galat ya missing hai."
+      );
     }
   }
-  if (!res.ok) throw new Error((data && data.message) || "Request fail ho gayi");
+  if (!res.ok) throw new Error((data && data.message) || "Request fail ho gayi (status " + res.status + ")");
   return data;
 }
 

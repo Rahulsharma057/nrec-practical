@@ -26,6 +26,12 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://127.0.0.1:3000",
   "http://127.0.0.1:5173",
+
+  // CLIENT_URL env var — comma-separated extra origins (e.g. a renamed/custom domain)
+  ...(process.env.CLIENT_URL || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean),
 ];
 
 // Automatically allow future Vercel preview deployments
