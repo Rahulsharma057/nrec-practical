@@ -1,0 +1,23 @@
+/* Sirf woh styles jo MUI ke bahar chahiye. Baaki sab theme se aata hai. */
+html,
+body,
+#root {
+  height: auto;
+}
+
+/* screen par ek waqt me ek hi sheet, print par dono */
+.sheet-wrap.is-hidden {
+  display: none;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .sheet-wrap.is-hidden {
+    display: block !important;
+  }
+  body {
+    background: #fff !important;
+  }
+}

@@ -1,0 +1,197 @@
+/* A4 sheet — har value front page ki original scan se mapped hai (794 x 1123 px) */
+.page {
+  width: 794px;
+  height: 1123px;
+  background: #fff;
+  color: #000;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.18);
+  font-kerning: normal;
+}
+.page div,
+.page img,
+.page table {
+  margin: 0;
+}
+.mid {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  display: inline-block;
+  line-height: 1.08;
+}
+
+.cv-frame {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.cv-logo {
+  position: absolute;
+  left: 50%;
+  top: 28.8%;
+  width: 243px;
+  height: 243px;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+.cv-college {
+  top: 8.2%;
+  font-family: "Lato", "Segoe UI", Arial, sans-serif;
+  font-weight: 900;
+  color: #23709f;
+  letter-spacing: -0.5px;
+}
+.cv-affil {
+  top: 13.6%;
+  font-family: "Lato", "Segoe UI", Arial, sans-serif;
+  font-weight: 700;
+  color: #3b3b3b;
+}
+.cv-ribbon {
+  position: absolute;
+  left: 50%;
+  top: 45.05%;
+  width: 360px;
+  height: 79px;
+  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.cv-ribbon-text {
+  position: absolute;
+  left: 48.9%;
+  top: 36.7%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-family: "Poppins", "Century Gothic", Arial, sans-serif;
+  font-weight: 700;
+  color: #3d3d3d;
+  font-size: 26px;
+  letter-spacing: 0.3px;
+}
+.cv-title {
+  position: absolute;
+  left: 50%;
+  top: 57.35%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  font-family: "Bitter", "Rockwell", Georgia, serif;
+  font-weight: 800;
+  color: #6a3eb0;
+  line-height: 40.8px;
+}
+.cv-title div {
+  white-space: nowrap;
+}
+.cv-paper {
+  top: 66.9%;
+  font-family: "Poppins", "Century Gothic", Arial, sans-serif;
+  font-weight: 700;
+  color: #414141;
+}
+.cv-class {
+  top: 72.4%;
+  font-family: "Poppins", "Century Gothic", Arial, sans-serif;
+  font-weight: 700;
+  color: #154a97;
+}
+.cv-lbl {
+  position: absolute;
+  font-family: "Jost", "Century Gothic", Arial, sans-serif;
+  font-weight: 300;
+  color: #8f8f8f;
+  font-size: 20px;
+  white-space: nowrap;
+}
+.cv-nm {
+  position: absolute;
+  font-family: "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif;
+  font-weight: 700;
+  color: #000;
+  white-space: nowrap;
+}
+.cv-to-label { left: 25%; top: 80.6%; transform: translate(-50%, -50%); }
+.cv-prof { left: 25%; top: 84.3%; transform: translate(-50%, -50%); }
+.cv-by-label { left: 73.5%; top: 80.6%; transform: translate(-50%, -50%); }
+.cv-student { left: 73.5%; top: 84.3%; transform: translate(-50%, -50%); }
+.cv-roll { left: 56.5%; top: 89%; transform: translateY(-50%); }
+.cv-enroll { left: 56.5%; top: 92.2%; transform: translateY(-50%); }
+
+.ix-title {
+  position: absolute;
+  left: 50%;
+  top: 10.24%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-family: "Noto Serif Display", "Bookman Old Style", Georgia, serif;
+  font-weight: 900;
+  font-variation-settings: "wdth" 62.5;
+  font-size: 44px;
+  letter-spacing: 0.5px;
+  text-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.45);
+}
+.ix-table {
+  position: absolute;
+  left: 4.1%;
+  top: 16.02%;
+  width: 92.77%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.ix-table td {
+  border: 1.5px solid #000;
+  text-align: center;
+  vertical-align: middle;
+  padding: 3px 6px;
+}
+.c-sr { width: 10.11%; }
+.c-ct { width: 76.86%; }
+.c-pg { width: 13.03%; }
+.ix-sub {
+  font-family: "Noto Serif Display", "Bookman Old Style", Georgia, serif;
+  font-weight: 500;
+  font-variation-settings: "wdth" 62.5;
+  font-size: 28px;
+  display: inline-block;
+  white-space: nowrap;
+}
+.ix-hd {
+  font-family: "Lato", "Segoe UI", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+.ix-num {
+  font-family: "Lato", "Segoe UI", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+}
+.ix-dev {
+  font-family: "Noto Sans Devanagari", "Nirmala UI", "Mangal", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.5;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* preview ko screen ki width ke hisaab se chhota karne ke liye */
+.stage { width: 100%; overflow: hidden; }
+.stage-holder { transform-origin: top left; }
+
+@page { size: A4; margin: 0; }
+@media print {
+  body { background: #fff; }
+  .no-print { display: none !important; }
+  .stage { height: auto !important; overflow: visible; }
+  .stage-holder { transform: none !important; }
+  .page { box-shadow: none; page-break-after: always; break-after: page; }
+  .page:last-of-type { page-break-after: auto; break-after: auto; }
+}
