@@ -5,9 +5,14 @@ body,
   height: auto;
 }
 
-/* screen par ek waqt me ek hi sheet, print par dono */
+/* screen par ek waqt me ek hi sheet, print par dono.
+   display:none ki jagah height:0 — taaki text abhi bhi naapa ja sake
+   (display:none par offsetWidth 0 aata hai, isse fit-to-shrink sizing
+   print me galat ho jaati thi jo waqt tab active nahi tha). */
 .sheet-wrap.is-hidden {
-  display: none;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
 }
 
 @media print {
@@ -15,7 +20,9 @@ body,
     display: none !important;
   }
   .sheet-wrap.is-hidden {
-    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    visibility: visible !important;
   }
   body {
     background: #fff !important;

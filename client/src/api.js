@@ -27,7 +27,14 @@ async function request(path, options = {}) {
 
   const res = await fetch("/api" + path, { ...options, headers });
   const text = await res.text();
-  const data = text ? JSON.parse(text) : null;
+  let data = null;
+  if (text) {
+    try {
+      data = JSON.parse(text);
+    } catch {
+      throw new Error("Server se sahi jawab nahi mila — shayad server band hai ya URL galat hai.");
+    }
+  }
   if (!res.ok) throw new Error((data && data.message) || "Request fail ho gayi");
   return data;
 }
