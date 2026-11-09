@@ -131,6 +131,22 @@ export default function Home({ onLoadingChange }) {
     const saved = holders.map((h) => h.style.transform);
     holders.forEach((h) => (h.style.transform = "none"));
 
+    // .stage-holder ka transform hata do, lekin uska parent "stage-size" box
+    // (jo preview ke chhote screen-fit scale par size hua tha) waisa hi reh jaata
+    // tha — isi se mobile par image/PDF A4 size se chhote box me clip ho jaati thi.
+    const sizers = Array.from(document.querySelectorAll(".stage-size"));
+    const savedSize = sizers.map((s) => ({ width: s.style.width, height: s.style.height }));
+    sizers.forEach((s) => {
+      s.style.width = PAGE_W + "px";
+      s.style.height = PAGE_H + "px";
+    });
+
+    // "stage" khud bhi screen par chhoti (overflow hidden) hoti hai — usse bhi
+    // khol do, warna upar wala full-size sizer isi ke andar clip ho jaata hai.
+    const stages = Array.from(document.querySelectorAll(".stage"));
+    const savedOverflow = stages.map((s) => s.style.overflow);
+    stages.forEach((s) => (s.style.overflow = "visible"));
+
     const opts = {
       scale: 2,
       backgroundColor: "#ffffff",
@@ -155,6 +171,11 @@ export default function Home({ onLoadingChange }) {
       setError("Image nahi ban paayi. Page reload karke dobara try karo.");
     } finally {
       holders.forEach((h, i) => (h.style.transform = saved[i]));
+      sizers.forEach((s, i) => {
+        s.style.width = savedSize[i].width;
+        s.style.height = savedSize[i].height;
+      });
+      stages.forEach((s, i) => (s.style.overflow = savedOverflow[i]));
       wraps.forEach((el, i) => wasHidden[i] && el.classList.add("is-hidden"));
       setBusy(false);
     }

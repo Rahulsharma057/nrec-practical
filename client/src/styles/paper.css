@@ -190,7 +190,11 @@
 @media print {
   body { background: #fff; }
   .no-print { display: none !important; }
-  .stage { height: auto !important; overflow: visible; }
+  /* mobile par screen-fit scale (PAGE_W*scale) wahi reh jaata tha jab transform
+     reset hota tha — isse content A4 size se chhote box me clip ho jaata tha.
+     yahan poori chain ko unscaled A4 size par force karo. */
+  .stage { width: 794px !important; height: auto !important; overflow: visible !important; }
+  .stage-size { width: 794px !important; height: 1123px !important; margin: 0 !important; }
   .stage-holder { transform: none !important; }
   .page { box-shadow: none; page-break-after: always; break-after: page; }
   .page:last-of-type { page-break-after: auto; break-after: auto; }

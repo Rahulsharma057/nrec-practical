@@ -31,6 +31,7 @@ export default function PaperStage({ zoom = "fit", hidden = false, children }) {
       >
         {/* scaled page jitni hi jagah ghere, taaki centering theek baithe */}
         <Box
+          className="stage-size"
           sx={{
             width: PAGE_W * scale,
             height: PAGE_H * scale,
